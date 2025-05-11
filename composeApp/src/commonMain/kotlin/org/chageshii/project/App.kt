@@ -1,25 +1,17 @@
 package org.chageshii.project
 
 import androidx.compose.runtime.*
-import io.ktor.client.engine.HttpClientEngine
-import org.chageshii.project.core.data.HttpClientFactory
-import org.chageshii.project.screen.data.network.KtorRemoteBugDataSource
-import org.chageshii.project.screen.data.repository.DefaultBugRepository
 import org.chageshii.project.screen.presentation.bug_list.BugListScreenRoot
 import org.chageshii.project.screen.presentation.bug_list.BugListViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 @Preview
-fun App(engine: HttpClientEngine) {
+fun App() {
+    val viewModel = koinViewModel<BugListViewModel>()
     BugListScreenRoot(
-        viewModel = remember { BugListViewModel(
-            bugRepository = DefaultBugRepository(
-                remoteBugDataSource = KtorRemoteBugDataSource(
-                    httpClient = HttpClientFactory.create(engine)
-                )
-            )
-        ) },
+        viewModel = viewModel,
         onBugClick = {
 
         }

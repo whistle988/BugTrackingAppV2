@@ -90,8 +90,9 @@ kotlin {
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
 
-            nativeMain.dependencies {
+        nativeMain.dependencies {
                 implementation(libs.ktor.client.darwin)
+                implementation(libs.ktor.client.js)
             }
 
             dependencies {
